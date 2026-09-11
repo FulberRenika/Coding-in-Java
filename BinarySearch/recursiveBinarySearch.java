@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class normalBinarySearch
+public class recursiveBinarySearch
 {
     public static boolean binaryHelp(int[] arr, int start, int end, int target){
         if(start>end){
@@ -10,28 +10,18 @@ public class normalBinarySearch
         if(arr[mid]==target){
             return true;
         }
-        if(arr[mid]>target){
-            binary(arr,start,mid-1);
+        else if(arr[mid]>target){
+            return binaryHelp(arr,start,mid-1,target);
         }
-        binary(arr,start+1,end);
+        else{
+            return binaryHelp(arr,mid+1,end,target);
+        }
 
     }
     public static boolean binary(int[] arr, int target){
         int left=0;
         int right=arr.length-1;
-        while(left<=right){
-            int mid=left+(right-left)/2;
-            if(arr[mid]>target){
-                right=mid-1;
-            }
-            else if(arr[mid]<target){
-                left=mid+1;
-            }
-            else{
-                return true;
-            }
-        }
-        return false;
+        return binaryHelp(arr,left,right,target);
     }
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
