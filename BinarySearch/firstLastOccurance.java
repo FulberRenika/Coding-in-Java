@@ -5,10 +5,13 @@ public class firstLastOccurance{
         int right=arr.length-1;
         int first=-1;
         int last=-1;
-        while(left<right){
+        while(left<=right){
             int mid=left+(right-left)/2;
-            if(arr[mid]>=target){
+            if(arr[mid]==target){
                 first=mid;
+                right=mid-1;
+            }
+            else if(arr[mid]>target){
                 right=mid-1;
             }
             else{
@@ -17,10 +20,13 @@ public class firstLastOccurance{
         }
         left=0;
         right=arr.length-1;
-        while(left<right){
+        while(left<=right){
             int mid=left+(right-left)/2;
-            if(arr[mid]<=target){
+            if(arr[mid]==target){
                 last=mid;
+                left=mid+1;
+            }
+            else if(arr[mid]<target){
                 left=mid+1;
             }
             else{
